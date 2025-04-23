@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { FormContext } from './FormContext';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Summary = () => {
   const { formData } = useContext(FormContext);
@@ -22,18 +23,20 @@ const Summary = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://user-api.onrender.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData) // <- This is your userData
+      // Sending the formData to the server
+      const response = await axios.post('https://user-api.onrender.com/submit', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
   
-      const result = await response.json();
-      console.log('✅ User saved:', result);
+      console.log('✅ User saved:', response.data); // Successfully saved user data
+  
     } catch (error) {
-      console.error('❌ Error:', error);
+      console.error('❌ Error:', error.response || error);
     }
   };
+  
   
 
   return (
