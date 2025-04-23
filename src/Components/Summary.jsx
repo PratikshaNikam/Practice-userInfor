@@ -13,11 +13,28 @@ const Summary = () => {
     </div>
   );
 
-  const handleSubmit = () => {
-    // Here you'd call an API or backend
-    console.log(formData);
-    alert('Form submitted!');
+  // const handleSubmit = () => {
+  //   // Here you'd call an API or backend
+  //   console.log(formData);
+  //   alert('Form submitted!');
+  // };
+
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('https://user-api.onrender.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData) // <- This is your userData
+      });
+  
+      const result = await response.json();
+      console.log('✅ User saved:', result);
+    } catch (error) {
+      console.error('❌ Error:', error);
+    }
   };
+  
 
   return (
     <>

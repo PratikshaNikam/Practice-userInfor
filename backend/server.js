@@ -4,6 +4,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import User from './models/User.js';
+const allowedOrigins = ['http://localhost:5500'];
 
 dotenv.config();
 
@@ -13,7 +14,10 @@ const PORT = process.env.PORT || 5000;
 // TEMP: log to verify .env is working
 console.log('MongoDB URI:', process.env.MONGODB_URI); 
 
-app.use(cors());
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+  }));
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -33,6 +37,8 @@ app.post('/submit', async (req, res) => {
     res.status(500).json({ error: 'Failed to save user.' });
   }
 });
+
+  
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
