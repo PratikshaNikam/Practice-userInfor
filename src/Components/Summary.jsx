@@ -14,28 +14,28 @@ const Summary = () => {
     </div>
   );
 
-  // const handleSubmit = () => {
-  //   // Here you'd call an API or backend
-  //   console.log(formData);
-  //   alert('Form submitted!');
-  // };
-
-
-  const handleSubmit = async () => {
-    try {
-      // Sending the formData to the server
-      const response = await axios.post('https://user-api.onrender.com/submit', formData, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-  
-      console.log('✅ User saved:', response.data); // Successfully saved user data
-  
-    } catch (error) {
-      console.error('❌ Error:', error.response || error);
-    }
+  const handleSubmit = () => {
+    // Here you'd call an API or backend
+    console.log(formData);
+    alert('Form submitted!');
   };
+
+
+  // const handleSubmit = async () => {
+  //   try {
+  //     // Sending the formData to the server
+  //     const response = await axios.post('https://user-api.onrender.com/submit', formData, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       }
+  //     });
+  
+  //     console.log('✅ User saved:', response.data); // Successfully saved user data
+  
+  //   } catch (error) {
+  //     console.error('❌ Error:', error.response || error);
+  //   }
+  // };
   
   
 
